@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Development') {
+            steps {
+                echo 'Hello World - development'
+                bat 'git clone https://github.com/YashSinghal215/Devop1.git'
+            }
+        }
+        
+        stage('QA'){
+            steps{
+                echo 'Hello - qa'
+                bat '''cd Devop1
+                        echo hello > newtextfile3.txt
+                        git add .
+                        git config --global user.email "yashsinghal215@gmail.com"
+                        git config --global user.name "YashSinghal215"
+                        git commit -m "push from Jenkins"
+                        git push https://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@github.com/YashSinghal215/Devop1.git'''
+            }
+        }
+        
+        stage('UAT'){
+            steps{
+                echo 'Hello uat'
+                bat 'cd.. '
+                bat 'cd SecondJob\Devop1'
+                bat 'Echo >newfile2.txt'
+                bat 'Echo hiiii>>newfile2.txt'
+            }
+        }
+        
+    }
+}
